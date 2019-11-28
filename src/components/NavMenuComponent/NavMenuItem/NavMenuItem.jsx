@@ -9,10 +9,12 @@ const NavMenuItem = props => {
   };
   return (
     <div>
+
       <ListItem
         button
         onClick={props.clickOnTitle.bind(this, props.item.apiPath)}
       >
+
         <p style={color}>{props.item.name}</p>
         <ListItemText />
       </ListItem>
