@@ -1,8 +1,11 @@
 import React from 'react';
+import NavMenuComponent from "../../components/NavMenuComponent/NavMenuComponent";
 
 const Dashboard = props => {
     return (
-        <div>Dashboard</div>
+        <div>
+            <NavMenuComponent />
+        </div>
     );
 }
 
