@@ -1,6 +1,6 @@
 import React from 'react';
 import NavMenuComponent from "../../components/NavMenuComponent/NavMenuComponent";
-import VisualiseComponent from "../../components/VisualiseComponent/VisualiseComponent";
+import AccountComponent from "../../components/AccountComponent/AccountComponent";
 
 const Dashboard = props => {
     const apiBaseUrl = "https://htf.zinderlabs.com";
@@ -10,7 +10,7 @@ const Dashboard = props => {
     return (
         <div>
             <NavMenuComponent />
-            <VisualiseComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
+            <AccountComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
         </div>
     );
 }
