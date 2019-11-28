@@ -7,7 +7,15 @@ import { makeStyles } from "@material-ui/core/styles";
 const TransactionCard = props => {
     const classes = useStyles();
 
-    return <div>{console.log(props.data)}</div>;
+    return (
+        <Card className={classes.card}>
+            <CardContent>
+                <Typography className={classes.title}>{`From: ${props.data.sender}`}</Typography>
+                <Typography className={classes.title}>{`To: ${props.data.recipient}`}</Typography>
+                <Typography className={classes.content}>{`Amount: ${props.data.amount}`}</Typography>
+            </CardContent>
+        </Card>
+    );
 };
 
 export default TransactionCard;
