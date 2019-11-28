@@ -11,9 +11,9 @@ const AccountCard = props => {
     return (
         <Card className={classes.card}>
             <CardContent>
-                <Typography className={classes.title}>{`${props.data.firstName} ${props.data.lastName}`}</Typography>
-                <Typography className={classes.content}>{`Balance: ${props.data.account.balance} ${props.data.account.currency}`}</Typography>
-                <Typography className={classes.content}>{`IBAN: ${props.data.account.iban}`}</Typography>
+                <Typography className={classes.title}>{`${props.data.firstName || props.data.name}`}</Typography>
+                {props.data.account.balance && <Typography className={classes.content}>{`Balance: ${props.data.account.balance || props.data.card.balance}`}</Typography>}
+                <Typography className={classes.content}>{`IBAN: ${props.data.account.iban || props.data.card.iban}`}</Typography>
             </CardContent>
             {console.log(props.data)}
         </Card>
@@ -38,27 +38,29 @@ const Visualisecomponent = props => {
         accounts: AccountCard,
         transactions: TransactionCard
     }
+    let url = `${props.apiBaseUrl}${props.currentBank}${toVisualise}`;
 
     useEffect(() => {
-        axios.get(`${props.apiBaseUrl}/caymannationalbank/${toVisualise}`, {
+        axios.get(`${url}`, {
             headers: {
                 Authorization: props.apiKey
             }
         }
         )
             .then(data => {
+                setDate([]);
                 console.log(`Er zijn ${data.data.result.length} resultaten`)
                 setDate(data.data.result);
             })
             .catch(err => console.log(err));
-    }, [props.apiBaseUrl, props.apiKey, toVisualise]);
+    }, [url, props.apiKey]);
 
     return (
         <div>
-            {/* {data && isAccountsToVisualise ?
-                data.map(account => <AccountCard key={account.id} account={account} />) :
-                data.map()
-            } */}
+            <div className="toVisualiseButons">
+                <button onClick={() => { setToVisualise("accounts"); }}>Accounts</button>
+                <button onClick={() => { setToVisualise("transactions"); }}>Transactions</button>
+            </div>
             {data && data.map(data => {
                 const Card = cards[toVisualise];
                 return <Card key={data.id} data={data} />

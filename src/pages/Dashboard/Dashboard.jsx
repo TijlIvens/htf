@@ -14,7 +14,7 @@ const Dashboard = props => {
                 apiKey={apiKey}
                 setCurrentBank={setCurrentBank}
             />
-            <VisualiseComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
+            {currentBank && <VisualiseComponent currentBank={currentBank} apiBaseUrl={apiBaseUrl} apiKey={apiKey} />}
         </div>
     );
 }
