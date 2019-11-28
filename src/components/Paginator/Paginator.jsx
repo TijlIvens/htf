@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Paginator from "react-hooks-paginator";
 
 const PaginatorComp = props => {
-  const pageLimit = 10;
+  const pageLimit = 24;
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
