@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavMenuItem from "./NavMenuItem/NavMenuItem";
+import List from "@material-ui/core/List";
+import ListSubheader from "@material-ui/core/ListSubheader";
 
 const banks = [{ name: "test1" }];
 
 const NavMenuComponent = props => {
-  const [data, setDate] = useState(null);
+  const [dataBanken, setData] = useState(null);
 
   useEffect(() => {
     axios
@@ -15,18 +17,25 @@ const NavMenuComponent = props => {
         }
       })
       .then(data => {
-        setDate(data.data.result);
+        setData(data.data);
       })
       .catch(err => console.log(err));
   }, [props.apiBaseUrl, props.apiKey]);
 
-  function clickOnTile(id) {}
-
   return (
     <div>
-      {data.map(item => (
-        <NavMenuItem title={item.name} />
-      ))}
+      <List
+        subheader={
+          <ListSubheader component="div" id="nested-list-subheader">
+            Nested List Items
+          </ListSubheader>
+        }
+      >
+        {dataBanken &&
+          dataBanken.map(item => (
+            <NavMenuItem item={item} clickOnTitle={props.setCurrentBank} />
+          ))}
+      </List>
     </div>
   );
 };

@@ -1,10 +1,14 @@
 import React from "react";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const NavMenuItem = props => {
   return (
     <div>
-      <h3 onClick={props.clickOnTitle}>{props.title}</h3>
-      <h5 onClick={props.clickOnTransaction}>{props.transaction}</h5>
+      <ListItem button onClick={props.clickOnTitle.bind(this, props.item.name)}>
+        <ListItemText primary={props.item.name} />
+      </ListItem>
     </div>
   );
 };
