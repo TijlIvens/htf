@@ -42,7 +42,7 @@ const Visualisecomponent = props => {
         }
       });
     });
-    console.log(`Er zijn ${accounts.length} resultaten`);
+    //console.log(`Er zijn ${accounts.length} resultaten`);
     console.log(mappedData);
     return mappedData;
   };
