@@ -93,6 +93,7 @@ const Visualisecomponent = props => {
             <div className="toVisualiseButons">
                 <button
                     onClick={() => {
+                        setDate([]);
                         setToVisualise("accounts");
                     }}
                 >
@@ -106,6 +107,7 @@ const Visualisecomponent = props => {
                     Transactions
         </button>
             </div>
+            {console.log(data)}
             {data &&
                 data.map(data => {
                     const Card = cards[toVisualise];
