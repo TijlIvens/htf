@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavMenuItem from "./NavMenuItem/NavMenuItem";
 import List from "@material-ui/core/List";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import "./NavMenuComponent.css";
 
 const NavMenuComponent = props => {
   const [dataBanken, setData] = useState(null);
@@ -21,14 +21,9 @@ const NavMenuComponent = props => {
   }, [props.apiBaseUrl, props.apiKey]);
 
   return (
-    <div>
-      <List
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Nested List Items
-          </ListSubheader>
-        }
-      >
+    <div className="NavMenu">
+      <h3>Select Bank</h3>
+      <List>
         {dataBanken &&
           dataBanken.map(item => (
             <NavMenuItem item={item} clickOnTitle={props.setCurrentBank} />

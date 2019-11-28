@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 const AccountCard = props => {
-    const classes = useStyles()
+  const classes = useStyles();
 
     return (
         <Card className={classes.card}>
@@ -21,14 +21,10 @@ const AccountCard = props => {
 }
 
 const TransactionCard = props => {
-    const classes = useStyles()
+  const classes = useStyles();
 
-    return (
-        <div>
-            {console.log(props.data)}
-        </div>
-    );
-}
+  return <div>{console.log(props.data)}</div>;
+};
 
 const Visualisecomponent = props => {
     const [data, setDate] = useState(null);
@@ -77,18 +73,20 @@ const Visualisecomponent = props => {
 
 export default Visualisecomponent;
 
-
 const useStyles = makeStyles({
-    card: {
-        minWidth: "25%",
-        display: "inline-block",
-        margin: "10px"
-    },
-    title: {
-        fontSize: '14px',
-        marginBottom: '10px'
-    },
-    content: {
-        fontSize: '10px',
-    }
-})
+  card: {
+    minWidth: "250dp",
+    display: "inline-block",
+    margin: "10px"
+  },
+  title: {
+    fontSize: "14px",
+    marginBottom: "10px"
+  },
+  content: {
+    fontSize: "10px"
+  },
+  component: {
+    width: "100%"
+  }
+});
