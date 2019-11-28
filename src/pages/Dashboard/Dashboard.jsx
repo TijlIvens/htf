@@ -8,6 +8,7 @@ const Dashboard = props => {
     const apiKey = "c5845908142885ccbb0123093471c2b6";
     const [currentBank, setCurrentBank] = useState(null);
 
+
     return (
         <div className="FlexBox">
             <NavMenuComponent
@@ -16,9 +17,16 @@ const Dashboard = props => {
                 apiKey={apiKey}
                 setCurrentBank={setCurrentBank}
             />
-            {currentBank && <VisualiseComponent currentBank={currentBank} apiBaseUrl={apiBaseUrl} apiKey={apiKey} />}
+            <div>
+                {currentBank && (
+                    <VisualiseComponent
+                        currentBank={currentBank}
+                        apiBaseUrl={apiBaseUrl}
+                        apiKey={apiKey}
+                    />
+                )}
+            </div>
         </div>
     );
-}
-
+};
 export default Dashboard;

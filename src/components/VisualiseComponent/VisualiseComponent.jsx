@@ -20,6 +20,7 @@ const AccountCard = props => {
     );
 }
 
+
 const TransactionCard = props => {
     const classes = useStyles();
 
@@ -27,22 +28,23 @@ const TransactionCard = props => {
 };
 
 const Visualisecomponent = props => {
+    const classes = useStyles();
     const [data, setDate] = useState(null);
     //if false it are the transactionsToVisualise
     const [toVisualise, setToVisualise] = useState("accounts");
     const cards = {
         accounts: AccountCard,
         transactions: TransactionCard
-    }
+    };
     let url = `${props.apiBaseUrl}${props.currentBank}${toVisualise}`;
 
     useEffect(() => {
-        axios.get(`${url}`, {
-            headers: {
-                Authorization: props.apiKey
-            }
-        }
-        )
+        axios
+            .get(`${url}`, {
+                headers: {
+                    Authorization: props.apiKey
+                }
+            })
             .then(data => {
                 if (toVisualise === "accounts") {
                     setDate([]);
@@ -78,19 +80,33 @@ const Visualisecomponent = props => {
             .catch(err => console.log(err));
     }, [url, props.apiKey, toVisualise]);
 
+
     return (
-        <div>
+        <div className={classes.component}>
             <div className="toVisualiseButons">
-                <button onClick={() => { setToVisualise("accounts"); }}>Accounts</button>
-                <button onClick={() => { setToVisualise("transactions"); }}>Transactions</button>
+                <button
+                    onClick={() => {
+                        setToVisualise("accounts");
+                    }}
+                >
+                    Accounts
+        </button>
+                <button
+                    onClick={() => {
+                        setToVisualise("transactions");
+                    }}
+                >
+                    Transactions
+        </button>
             </div>
-            {data && data.map(data => {
-                const Card = cards[toVisualise];
-                return <Card key={data.id} data={data} />
-            })}
+            {data &&
+                data.map(data => {
+                    const Card = cards[toVisualise];
+                    return <Card key={data.id} data={data} />;
+                })}
         </div>
     );
-}
+};
 
 export default Visualisecomponent;
 
