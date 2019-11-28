@@ -5,7 +5,9 @@
 }
 
 .NavMenu {
-  width: 300px;
+  position: sticky;
+  top: 0;
+  min-width: 300px;
   background: #00277a;
-  height: "100%";
+  height: "2000dp";
 }
