@@ -48,12 +48,18 @@ const Visualisecomponent = props => {
         }
         )
             .then(data => {
-                setDate([]);
-                console.log(`Er zijn ${data.data.result.length} resultaten`)
-                setDate(data.data.result);
+                if (toVisualise === "accounts") {
+                    setDate([]);
+                    console.log(`Er zijn ${data.data.result.length} resultaten`)
+                    setDate(data.data.result);
+                }
+                else if (toVisualise === "transactions") {
+                    setDate([]);
+
+                }
             })
             .catch(err => console.log(err));
-    }, [url, props.apiKey]);
+    }, [url, props.apiKey, toVisualise]);
 
     return (
         <div>
