@@ -1,0 +1,13 @@
+.FlexBox {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+}
+
+.NavMenu {
+  position: sticky;
+  top: 0;
+  min-width: 300px;
+  background: #00277a;
+  height: "2000dp";
+}
