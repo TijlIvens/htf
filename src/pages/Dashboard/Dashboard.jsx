@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NavMenuComponent from "../../components/NavMenuComponent/NavMenuComponent";
-import AccountComponent from "../../components/AccountComponent/AccountComponent";
+import VisualiseComponent from "../../components/VisualiseComponent/VisualiseComponent";
 
 const Dashboard = props => {
   const apiBaseUrl = "https://htf.zinderlabs.com";
@@ -14,9 +14,9 @@ const Dashboard = props => {
         apiKey={apiKey}
         setCurrentBank={setCurrentBank}
       />
-      <AccountComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
     </div>
   );
+      <VisualiseComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
 };
 
 export default Dashboard;
