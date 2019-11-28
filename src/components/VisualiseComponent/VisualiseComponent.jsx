@@ -13,6 +13,62 @@ const Visualisecomponent = props => {
     };
     let url = `${props.apiBaseUrl}${props.currentBank}${toVisualise}`;
 
+    const parsedAccounts = (accounts) => {
+        let mappedData = [];
+        accounts.map(account => {
+            console.log(account);
+            let name = account.lastName ? account.lastName : account.name;
+            let id = account.id;
+            let nationality = account.nationality ? account.nationality : account.country;
+            let cardId = account.account ? account.account.id : account.card.id;
+            let iban = account.account ? account.account.iban : account.card.iban;
+            let balance = account.account ? account.account.balance : account.card.balance;
+            mappedData.push({
+                id: id,
+                name: name,
+                nationality: nationality,
+                card: {
+                    id: cardId,
+                    iban: iban,
+                    balance: balance
+                }
+            })
+        });
+        console.log(`Er zijn ${accounts.length} resultaten`);
+        console.log(mappedData);
+        return mappedData;
+    }
+
+    const parsedTransactions = transactions => {
+        let mappedTransactions = [];
+        transactions.map(transaction => {
+            console.log(transaction);
+            let id = transaction.id;
+            let sender;
+            if (transaction.senderIban) sender = transaction.senderIban;
+            else if (transaction.sender) sender = transaction.sender;
+            else if (transaction.originAccount) sender = transaction.originAccount;
+            else sender = 'something wrong';
+            let recipient;
+            if (transaction.receiverIban) recipient = transaction.receiverIban;
+            else if (transaction.recipient) recipient = transaction.recipient;
+            else if (transaction.destinationIban) recipient = transaction.destinationIban;
+            else sender = 'something wrong';
+            let amount = transaction.amount;
+            let time = transaction.time ? transaction.time : transaction.dateTime;
+            let message = transaction.message;
+            mappedTransactions.push({
+                id: id,
+                sender: sender,
+                recipient: recipient,
+                amount: amount,
+                time: time,
+                message: message
+            })
+        })
+        return mappedTransactions;
+    }
+
     useEffect(() => {
         axios
             .get(`${url}`, {
@@ -22,35 +78,10 @@ const Visualisecomponent = props => {
             })
             .then(data => {
                 if (toVisualise === "accounts") {
-                    setDate([]);
-                    let mappedData = [];
-                    data.data.result.map(account => {
-                        console.log(account);
-                        let name = account.lastName ? account.lastName : account.name;
-                        let id = account.id;
-                        let nationality = account.nationality ? account.nationality : account.country;
-                        let cardId = account.account ? account.account.id : account.card.id;
-                        let iban = account.account ? account.account.iban : account.card.iban;
-                        let balance = account.account ? account.account.balance : account.card.balance;
-                        mappedData.push({
-                            id: id,
-                            name: name,
-                            nationality: nationality,
-                            card: {
-                                id: cardId,
-                                iban: iban,
-                                balance: balance
-                            }
-                        })
-                    });
-                    console.log(`Er zijn ${data.data.result.length} resultaten`);
-                    console.log(mappedData);
-                    setDate(mappedData);
+                    setDate(parsedAccounts(data.data.result));
                 }
                 else if (toVisualise === "transactions") {
-                    setDate([]);
-                    console.log(data);
-                    //setDate(data);
+                    setDate(parsedTransactions(data.data.result));
                 }
             })
             .catch(err => console.log(err));
