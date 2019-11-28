@@ -1,0 +1,10 @@
+.FlexBox {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+}
+
+.NavMenu {
+  width: 300px;
+  background: #00277a;
+}
