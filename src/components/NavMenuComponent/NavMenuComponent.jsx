@@ -1,11 +1,10 @@
 import React from "react";
-import AppNav from "./NavMenuApp";
 import NavMenuItem from "./NavMenuItem/NavMenuItem";
 
 const banks = [{ name: "test1" }];
 
 const NavMenuComponent = props => {
-  function clickOnTile(id) {}
+  function clickOnTile(id) { }
   return (
     <div>
       {banks.map(item => (
