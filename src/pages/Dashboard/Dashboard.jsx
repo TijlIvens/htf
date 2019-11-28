@@ -8,7 +8,7 @@ const Dashboard = props => {
 
   return (
     <div>
-      <NavMenuComponent />
+      <NavMenuComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
       <AccountComponent apiBaseUrl={apiBaseUrl} apiKey={apiKey} />
     </div>
   );
